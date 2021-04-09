@@ -5,7 +5,7 @@ node('master') {
       echo 'Hello World'
     }
     stage('Git Pull from Github') {
-        sh 'git clone https://github.com/miqbalnawawi/CICD-MERN-Backend.git'
+        git url: 'https://github.com/miqbalnawawi/CICD-MERN-Backend.git'
     }
     stage('Build Docker Image') {
         sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER} ."   
