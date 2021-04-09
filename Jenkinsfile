@@ -8,7 +8,7 @@ node('master') {
         sh 'git clone https://github.com/miqbalnawawi/CICD-MERN-Backend.git'
     }
     stage('Build Docker Image') {
-        sh "cd CICD-MERN/mern-todo-app && docker build --build-arg APP_NAME=backend -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER} ."   
+        sh "docker build --build-arg APP_NAME=backend -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER} ."   
     }
     stage('Push Docker Image to Dockerhub') {
         sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
