@@ -5,7 +5,7 @@ node('master') {
       echo 'Hello World'
     }
     stage('Git Pull from Github') {
-        sh 'git clone https://github.com/miqbalnawawi/CICD-MERN.git'
+        sh 'git clone https://github.com/miqbalnawawi/CICD-MERN-Backend.git'
     }
     stage('Build Docker Image') {
         sh "cd CICD-MERN/mern-todo-app && docker build --build-arg APP_NAME=backend -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER} ."   
