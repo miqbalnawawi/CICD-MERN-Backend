@@ -14,9 +14,9 @@ node('master') {
         sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"
     }
     stage('DeployTo Kubernetes Cluster') {
-        sh'''cd CICD-MERN/mern-todo-app && sed -i "15d" backend-deployment.yml'''
-        sh'''cd CICD-MERN/mern-todo-app && sed -i "14 a \'\\'          image: $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}" backend-deployment.yml && sed -i "s/''//" backend-deployment.yml'''
-        sh 'cd CICD-MERN/mern-todo-app && kubectl apply -f backend-deployment.yml'
+        sh'''sed -i "15d" backend-deployment.yml'''
+        sh'''sed -i "14 a \'\\'          image: $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}" backend-deployment.yml && sed -i "s/''//" backend-deployment.yml'''
+        sh 'kubectl apply -f backend-deployment.yml'
    }
     stage('Remove Docker Image') {
         sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"   
