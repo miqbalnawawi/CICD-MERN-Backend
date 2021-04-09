@@ -1,8 +1,8 @@
 env.DOCKER_REGISTRY = 'miqbalnawawi'
 env.DOCKER_IMAGE_NAME = 'backend'
 node('master') {
-	stage('HelloWorld') {
-      echo 'Hello World'
+    stage('HelloWorld') {
+        echo 'Hello World'
     }
     stage('Git Pull from Github') {
         git url: 'https://github.com/miqbalnawawi/CICD-MERN-Backend.git'
